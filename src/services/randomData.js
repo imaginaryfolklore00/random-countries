@@ -2,11 +2,12 @@ import axios from "axios";
 
 const BASE_URL = "https://random-data-api.com";
 
-const getAddress = async (size) => {
+const getCountry = async () => {
   const response = await axios.get(`${BASE_URL}/api/v2/addresses`);
-  return response.data;
+  const countryObject = { name: response.data.country };
+  return countryObject;
 };
 
-const randomDataService = { getAddress };
+const randomDataService = { getCountry };
 
 export default randomDataService;

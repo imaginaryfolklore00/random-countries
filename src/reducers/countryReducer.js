@@ -19,9 +19,13 @@ const countrySlice = createSlice({
 export const { appendCountry, setCountries } = countrySlice.actions;
 
 export const addCountryName = () => {
-  return async (dispatch) => {
-    const address = await randomDataService.getAddress();
-    dispatch(appendCountry(address.country));
+  return async (dispatch, getState) => {
+    let country = await randomDataService.getCountry();
+    const currentCountries = getState().countries;
+    while (currentCountries.find((e) => e.name === country.name)) {
+      country = await randomDataService.getCountry();
+    }
+    dispatch(appendCountry(country));
   };
 };
 

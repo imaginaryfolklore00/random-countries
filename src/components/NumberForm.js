@@ -8,7 +8,10 @@ const NumberForm = () => {
 
   const handleNumSubmit = (event) => {
     event.preventDefault();
-    dispatch(addCountryName());
+    const numOfCountries = event.target.inputNumber.value;
+    for (let i = 0; i < numOfCountries; i++) {
+      dispatch(addCountryName());
+    }
   };
 
   return (
