@@ -1,15 +1,14 @@
-import randomDataService from "../services/randomData";
+import { addCountryName } from "../reducers/countryReducer";
+import { useDispatch } from "react-redux";
 
 const NumberForm = () => {
   const MIN_NUMBER_VALUE = 5;
   const MAX_NUMBER_VALUE = 20;
+  const dispatch = useDispatch();
 
-  const handleNumSubmit = async (event) => {
+  const handleNumSubmit = (event) => {
     event.preventDefault();
-    const address = await randomDataService.getAddress(
-      event.target.inputNumber.value
-    );
-    console.log(address);
+    dispatch(addCountryName());
   };
 
   return (
