@@ -1,5 +1,5 @@
 import { addCountryNameWithInfo } from "../reducers/countryReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const NumberForm = () => {
   const MIN_NUMBER_VALUE = 5;
