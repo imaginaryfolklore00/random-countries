@@ -1,4 +1,4 @@
-import NumberForm from "./NumberForm";
+import NumberForm from "./components/NumberForm";
 
 const App = () => {
   return (
