@@ -44,4 +44,10 @@ export const addCountryNameWithInfo = () => {
   };
 };
 
+export const clearCountries = () => {
+  return (dispatch) => {
+    dispatch(setCountries(initialState));
+  };
+};
+
 export default countrySlice.reducer;

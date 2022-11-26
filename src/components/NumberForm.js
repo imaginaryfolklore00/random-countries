@@ -1,4 +1,7 @@
-import { addCountryNameWithInfo } from "../reducers/countryReducer";
+import {
+  addCountryNameWithInfo,
+  clearCountries,
+} from "../reducers/countryReducer";
 import { useDispatch } from "react-redux";
 
 const NumberForm = () => {
@@ -8,6 +11,7 @@ const NumberForm = () => {
 
   const handleNumSubmit = (event) => {
     event.preventDefault();
+    dispatch(clearCountries());
     const numOfCountries = event.target.inputNumber.value;
     for (let i = 0; i < numOfCountries; i++) {
       dispatch(addCountryNameWithInfo());
