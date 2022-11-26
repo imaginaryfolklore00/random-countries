@@ -1,5 +1,11 @@
+import NumberForm from "./NumberForm";
+
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <NumberForm />
+    </div>
+  );
 };
 
 export default App;
