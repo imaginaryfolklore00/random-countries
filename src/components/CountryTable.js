@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
+import { Table, Fade } from "react-bootstrap";
 
-const Country = ({ country }) => {
+const Country = ({ country, listId }) => {
+  const order = listId + 1;
+
   if (country.hasOwnProperty("notFound")) {
     return (
       <tr>
+        <td>{order}</td>
         <td>{country.name}</td>
         <td>{country.notFound}</td>
       </tr>
@@ -12,6 +16,7 @@ const Country = ({ country }) => {
 
   return (
     <tr>
+      <td>{order}</td>
       <td>{country.name}</td>
       <td>{country.capital}</td>
       <td>
@@ -32,10 +37,11 @@ const CountryTable = () => {
   );
 
   return (
-    <div>
-      <table>
+    <Fade in={countries.length}>
+      <Table striped hover>
         <thead>
           <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Capital</th>
             <th>Population</th>
@@ -43,12 +49,12 @@ const CountryTable = () => {
           </tr>
         </thead>
         <tbody>
-          {countriesToDisplay.map((country) => (
-            <Country key={country.name} country={country} />
+          {countriesToDisplay.map((country, index) => (
+            <Country key={index} country={country} listId={index} />
           ))}
         </tbody>
-      </table>
-    </div>
+      </Table>
+    </Fade>
   );
 };
 

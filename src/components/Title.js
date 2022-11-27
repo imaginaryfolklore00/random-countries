@@ -1,3 +1,3 @@
-const Title = () => <h1>Random countries generator &#129409;</h1>;
+const Title = () => <h1>Random countries generator &#127758;</h1>;
 
 export default Title;

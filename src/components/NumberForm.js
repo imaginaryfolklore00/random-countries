@@ -3,6 +3,7 @@ import {
   clearCountries,
 } from "../reducers/countryReducer";
 import { useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 
 const NumberForm = () => {
   const MIN_NUMBER_VALUE = 5;
@@ -30,7 +31,9 @@ const NumberForm = () => {
           defaultValue={MIN_NUMBER_VALUE}
         />
       </div>
-      <button type="submit">Go</button>
+      <Button variant="primary" type="submit">
+        Enter
+      </Button>
     </form>
   );
 };
