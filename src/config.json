@@ -1,0 +1,7 @@
+{
+  "SERVER_URL": "https://example.com/api/",
+  "MIN_NUMBER_VALUE": 5,
+  "MAX_NUMBER_VALUE": 20,
+  "RANDOM_DATA_URL": "https://random-data-api.com",
+  "RESTCOUNTRIES_URL": "https://restcountries.com"
+}

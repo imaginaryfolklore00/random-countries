@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import randomDataService from "../services/randomData";
 import restCountriesService from "../services/restcountries";
+import configData from "../config.json";
 
 const initialState = [];
 
@@ -9,7 +10,9 @@ const countrySlice = createSlice({
   initialState,
   reducers: {
     appendCountry(state, action) {
-      state.push(action.payload);
+      if (state.length < configData.MAX_NUMBER_VALUE) {
+        state.push(action.payload);
+      }
     },
     setCountries(state, action) {
       return action.payload;

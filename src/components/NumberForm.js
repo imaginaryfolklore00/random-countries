@@ -4,10 +4,9 @@ import {
 } from "../reducers/countryReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
+import configData from "../config.json";
 
 const NumberForm = () => {
-  const MIN_NUMBER_VALUE = 5;
-  const MAX_NUMBER_VALUE = 20;
   const dispatch = useDispatch();
 
   const handleNumSubmit = (event) => {
@@ -26,9 +25,9 @@ const NumberForm = () => {
         <input
           type="number"
           name="inputNumber"
-          min={MIN_NUMBER_VALUE}
-          max={MAX_NUMBER_VALUE}
-          defaultValue={MIN_NUMBER_VALUE}
+          min={configData.MIN_NUMBER_VALUE}
+          max={configData.MAX_NUMBER_VALUE}
+          defaultValue={configData.MIN_NUMBER_VALUE}
         />
       </div>
       <Button variant="primary" type="submit">
