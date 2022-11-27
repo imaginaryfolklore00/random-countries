@@ -1,18 +1,26 @@
 import { useSelector } from "react-redux";
 
 const Country = ({ country }) => {
-  let languages = [];
-  if (country.hasOwnProperty("languages")) {
-    languages = Object.keys(country.languages)
-      .map((key) => country.languages[key])
-      .join(", ");
+  if (country.hasOwnProperty("notFound")) {
+    return (
+      <tr>
+        <td>{country.name}</td>
+        <td>{country.notFound}</td>
+      </tr>
+    );
   }
 
   return (
-    <div>
-      {country.name} has population of {country.population}. The capital is {country.capital}.
-      Speaks {languages}
-    </div>
+    <tr>
+      <td>{country.name}</td>
+      <td>{country.capital}</td>
+      <td>
+        {country.population
+          ? country.population.toLocaleString("en", { useGrouping: true })
+          : ""}
+      </td>
+      <td>{country.languages}</td>
+    </tr>
   );
 };
 
@@ -22,11 +30,24 @@ const CountryTable = () => {
   const countriesToDisplay = [...countries].sort(
     (a, b) => b.population - a.population
   );
+
   return (
     <div>
-      {countriesToDisplay.map((country) => (
-        <Country country={country} key={country.name} />
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+            <th>Languages</th>
+          </tr>
+        </thead>
+        <tbody>
+          {countriesToDisplay.map((country) => (
+            <Country key={country.name} country={country} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

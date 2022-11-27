@@ -3,6 +3,7 @@ import axios from "axios";
 const RESTCOUNTRIES_URL = "https://restcountries.com";
 
 const getCountryInfo = async (name) => {
+  const notFoundMessage = "No information found!";
   try {
     const response = await axios.get(`${RESTCOUNTRIES_URL}/v3.1/name/${name}`, {
       headers: {
@@ -13,13 +14,19 @@ const getCountryInfo = async (name) => {
     });
     const country = response.data[0];
     const countryInfo = {
-      capital: country.capital,
+      capital: country.capital.join(", ") || notFoundMessage,
       population: country.population || 0,
-      languages: country.languages,
+      languages:
+        Object.keys(country.languages)
+          .map((key) => country.languages[key])
+          .join(", ") || notFoundMessage,
     };
     return countryInfo;
   } catch {
-    return null;
+    return {
+      notFound: notFoundMessage,
+      population: 0,
+    };
   }
 };
 
