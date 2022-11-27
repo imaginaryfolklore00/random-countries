@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import randomDataService from "../services/randomData";
 import restCountriesService from "../services/restcountries";
-import configData from "../config.json";
 
 const initialState = [];
 
@@ -10,8 +9,8 @@ const countrySlice = createSlice({
   initialState,
   reducers: {
     appendCountry(state, action) {
-      if (state.length < configData.MAX_NUMBER_VALUE) {
-        state.push(action.payload);
+      if (state.length < action.payload.maxCountries) {
+        state.push(action.payload.country);
       }
     },
     setCountries(state, action) {
@@ -29,14 +28,14 @@ const countrySlice = createSlice({
 export const { appendCountry, setCountries, updateCountry } =
   countrySlice.actions;
 
-export const addCountryNameWithInfo = () => {
+export const addCountryNameWithInfo = (maxCountries) => {
   return async (dispatch, getState) => {
     let country = await randomDataService.getCountry();
     const currentCountries = getState().countries;
     while (currentCountries.find((e) => e.name === country.name)) {
       country = await randomDataService.getCountry();
     }
-    dispatch(appendCountry(country)); //first, get random countries and append them to the state
+    dispatch(appendCountry({ country, maxCountries })); //first, get random countries and append them to the state
 
     const countryInfo = await restCountriesService.getCountryInfo(country.name);
     const updatedCountry = {

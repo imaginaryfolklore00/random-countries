@@ -14,7 +14,7 @@ const NumberForm = () => {
     dispatch(clearCountries());
     const numOfCountries = event.target.inputNumber.value;
     for (let i = 0; i < numOfCountries; i++) {
-      dispatch(addCountryNameWithInfo());
+      dispatch(addCountryNameWithInfo(numOfCountries));
     }
   };
 

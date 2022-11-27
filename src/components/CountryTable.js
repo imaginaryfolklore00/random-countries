@@ -37,7 +37,7 @@ const CountryTable = () => {
   );
 
   return (
-    <Fade in={countries.length}>
+    <Fade in={countries.length > 0}>
       <Table striped hover>
         <thead>
           <tr>
